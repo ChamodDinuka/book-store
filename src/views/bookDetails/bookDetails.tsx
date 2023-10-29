@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { getBookDetails, addToCart } from "../../store/actions/booksAction";
 import Header from "../../components/header/header";
+import Cart from "../../components/cart/cart";
 import Button from "../../components/buttons/button";
 import { useTranslation } from "react-i18next";
 
@@ -29,6 +30,9 @@ function BookDetails() {
   return (
     <>
       <Header />
+      <div className="flex justify-end p-2 sticky top-0">
+        <Cart />
+      </div>
       {selectedBook && !isLoading ? (
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-1">
           <div className="flex flex-row sm:flex-col">

@@ -55,6 +55,42 @@ const booksReducer = (state = initState, action: any) => {
           error: null,
         },
       };
+      // get search new books
+    case actions.GET_SEARCH_BOOKS_START:
+        return {
+          ...state,
+          bookList: {
+            ...state.bookList,
+            isloading: true,
+          },
+        };
+      case actions.GET_SEARCH_BOOKS_FAIL:
+        return {
+          ...state,
+          bookList: {
+            ...state.bookList,
+            isloading: false,
+            error: action.payload,
+          },
+        };
+      case actions.GET_SEARCH_BOOKS_SUCCESS:
+        return {
+          ...state,
+          bookList: {
+            ...state.bookList,
+            data: action.payload,
+            isloading: false,
+          },
+        };
+      case actions.GET_SEARCH_BOOKS_END:
+        return {
+          ...state,
+          bookList: {
+            ...state.bookList,
+            isloading: false,
+            error: null,
+          },
+        };
     // get details of a book
     case actions.GET_BOOK_DETAILS_START:
       return {
@@ -91,6 +127,7 @@ const booksReducer = (state = initState, action: any) => {
           error: null,
         },
       };
+    //add to cart
     case actions.ADD_TO_CART:
       let carItems: Array<CardProps> = JSON.parse(localStorage.getItem("cartItems") || "[]");
       let index = carItems?.findIndex((item: CardProps) => item.isbn13 === action.payload.isbn13);
