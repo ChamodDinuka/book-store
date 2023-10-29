@@ -6,11 +6,13 @@ import Header from "../../components/header/header";
 import Cart from "../../components/cart/cart";
 import Button from "../../components/buttons/button";
 import { useTranslation } from "react-i18next";
+import { CardProps } from "../../interfaces/typeInterfaces";
 
 function BookDetails() {
   const dispatch = useDispatch();
   const countRef = useRef(1);
   const location = useLocation();
+  const cart = useSelector((state: any) => state.books.cart.data);
   const selectedBook = useSelector((state: any) => state.books.selectedBook.data);
   const isLoading = useSelector((state: any) => state.books.selectedBook.isloading);
   const { t } = useTranslation();
@@ -20,8 +22,20 @@ function BookDetails() {
   }, []);
 
   const addToCard = () => {
-    addToCart({ ...selectedBook, count: countRef.current })(dispatch);
+    const total = getTotal();
+    addToCart({ ...selectedBook, count: countRef.current },total)(dispatch);
   };
+
+  const getTotal = ():number =>{
+    const price = Number(selectedBook.price.substring(1));
+    const preTotal = cart?.reduce((accumulator:number, currentValue:CardProps) => {
+        if(currentValue.count){
+        return accumulator + (currentValue.count*Number(currentValue.price.substring(1)));
+        }
+      }, 0);
+    const total = preTotal + (price*countRef.current);
+    return total;
+  }
 
   const updateCount = (count: number) => {
     countRef.current = count;

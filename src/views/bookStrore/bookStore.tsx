@@ -12,6 +12,7 @@ function BookStore() {
   const navigate = useNavigate();
   const countRef = useRef(1);
   const searchRef = useRef("");
+  const cart = useSelector((state: any) => state.books.cart.data);
   const bookList = useSelector((state: any) => state.books.bookList.data);
 
   useEffect(() => {
@@ -23,8 +24,20 @@ function BookStore() {
   };
 
   const addToCard = (data: CardProps) => {
-    addToCart({ ...data, count: countRef.current })(dispatch);
+    const total = getTotal(data);
+    addToCart({ ...data, count: countRef.current },total)(dispatch);
   };
+
+  const getTotal = (data:CardProps):number =>{
+    const price = Number(data.price.substring(1));
+    const preTotal = cart?.reduce((accumulator:number, currentValue:CardProps) => {
+        if(currentValue.count){
+        return accumulator + (currentValue.count*Number(currentValue.price.substring(1)));
+        }
+      }, 0);
+    const total = preTotal + (price*countRef.current);
+    return total;
+  }
 
   const updateCount = (count: number) => {
     countRef.current = count;

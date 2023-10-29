@@ -13,7 +13,7 @@ function Cart() {
     <div className="h-auto rounded-full border-black w-fit flex-col text-center p-4 border">
       <p className="text-slate-500 font-medium">Cart</p>
       <p className="text-slate-500">{sum} Items</p>
-      <p className="text-slate-500">$63.00</p>
+      <p className="text-slate-500">${cartData.totalPrice}</p>
     </div>
   );
 }

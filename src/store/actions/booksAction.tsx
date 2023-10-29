@@ -40,10 +40,11 @@ export const getBookDetails = (ISBN: string) => async (dispatch: Dispatch) => {
     }
 };
 
-export const addToCart = (itemData: CardProps) => async (dispatch: Dispatch) => {
+export const addToCart = (itemData: CardProps,total:number) => async (dispatch: Dispatch) => {
     dispatch({
         type: actions.ADD_TO_CART,
         payload: itemData,
+        total:total
     });
 };
 

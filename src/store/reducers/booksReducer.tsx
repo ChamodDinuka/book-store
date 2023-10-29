@@ -139,6 +139,7 @@ const booksReducer = (state = initState, action: any) => {
             cart: {
               ...state.cart,
               data: carItems,
+              totalPrice: action.total
             },
           };
       } else {
@@ -148,6 +149,7 @@ const booksReducer = (state = initState, action: any) => {
             cart: {
               ...state.cart,
               data: state.cart.data.concat(action.payload),
+              totalPrice: action.total
             },
           };
       }
