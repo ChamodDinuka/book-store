@@ -7,6 +7,7 @@ import Cart from "../../components/cart/cart";
 import Button from "../../components/buttons/button";
 import { useTranslation } from "react-i18next";
 import { CardProps } from "../../interfaces/typeInterfaces";
+import LoadingScreen from "../../components/loadingScreen/loadingScreen";
 
 function BookDetails() {
   const dispatch = useDispatch();
@@ -80,7 +81,7 @@ function BookDetails() {
           </div>
         </div>
       ) : (
-        <p>Loading</p>
+        <LoadingScreen/>
       )}
     </>
   );

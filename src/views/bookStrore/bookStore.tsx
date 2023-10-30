@@ -7,6 +7,7 @@ import Header from "../../components/header/header";
 import { CardProps } from "../../interfaces/typeInterfaces";
 import Cart from "../../components/cart/cart";
 import { useTranslation } from "react-i18next";
+import LoadingScreen from "../../components/loadingScreen/loadingScreen";
 
 function BookStore() {
   const dispatch = useDispatch();
@@ -97,6 +98,7 @@ function BookStore() {
         </div>
         <Cart />
       </div>
+      {bookList && !isLoading ? (
       <div className="grid grid-cols-2 gap-4 md:justify-items-center sm:grid-cols-1">
         {bookList &&
           bookList.map((data: CardProps) => (
@@ -105,6 +107,9 @@ function BookStore() {
             </div>
           ))}
       </div>
+      ):(
+        <LoadingScreen/>
+      )}
     </>
   );
 }
