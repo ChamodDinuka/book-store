@@ -25,7 +25,7 @@ function BookDetails() {
   const addToCard = () => {
     const total = getTotal();
     addToCart({ ...selectedBook, count: countRef.current }, total)(dispatch);
-    setAlert(t("alert.Item_added_successfully"),true)(dispatch);
+    setAlert(t("alert.Item_added_successfully"), true)(dispatch);
   };
 
   const getTotal = (): number => {
@@ -45,7 +45,7 @@ function BookDetails() {
 
   return (
     <>
-      <Header title={t("header.Book_detail")}/>
+      <Header title={t("header.Book_detail")} />
       <div className="flex justify-end p-2 sticky top-0">
         <Cart />
       </div>
@@ -81,7 +81,7 @@ function BookDetails() {
           </div>
         </div>
       ) : (
-        <LoadingScreen/>
+        <LoadingScreen />
       )}
     </>
   );

@@ -158,6 +158,7 @@ const booksReducer = (state = initState, action: any) => {
                     },
                 };
             }
+        //update cart item
         case actions.UPDATE_TO_CART:
             let items: Array<CardProps> = JSON.parse(localStorage.getItem("cartItems") || "[]");
             let position = items?.findIndex((item: CardProps) => item.isbn13 === action.payload.isbn13);
@@ -172,6 +173,7 @@ const booksReducer = (state = initState, action: any) => {
                     totalPrice: action.total,
                 },
             };
+        // delete cart item
         case actions.DELETE_CART_ITEM:
             localStorage.setItem('cartItems', JSON.stringify(state.cart.data.filter((x: any) => x.isbn13 !== action.payload.isbn13)));
             localStorage.setItem("totalPrice", action.total);
@@ -183,6 +185,7 @@ const booksReducer = (state = initState, action: any) => {
                     totalPrice: action.total,
                 }
             };
+        // alert action
         case actions.SET_ALERT:
             return {
                 ...state,

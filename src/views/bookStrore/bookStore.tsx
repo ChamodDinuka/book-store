@@ -46,7 +46,7 @@ function BookStore() {
     }
     const total = getTotal(data, count);
     addToCart({ ...data, count: count }, total)(dispatch);
-    setAlert(t("alert.Item_added_successfully"),true)(dispatch);
+    setAlert(t("alert.Item_added_successfully"), true)(dispatch);
   };
 
   const getTotal = (data: CardProps, count: number): number => {
@@ -81,7 +81,7 @@ function BookStore() {
 
   return (
     <>
-      <Header title={t("header.Book_store")}/>
+      <Header title={t("header.Book_store")} />
       <div className="flex justify-end p-2 sticky top-0">
         <div className="max-w-sm items-center flex p-2">
           <div className="relative rounded-full bg-gray-200 p-2 pl-4">
@@ -99,16 +99,16 @@ function BookStore() {
         <Cart />
       </div>
       {bookList && !isLoading ? (
-      <div className="grid grid-cols-2 gap-4 md:justify-items-center sm:grid-cols-1">
-        {bookList &&
-          bookList.map((data: CardProps) => (
-            <div className=" hover:cursor-pointer" key={data.isbn13} onClick={() => navigationCallBack(data.isbn13)}>
-              <Card {...data} firstCallBackFunction={() => addToCard(data)} counterCallBackFunction={updateCount} />
-            </div>
-          ))}
-      </div>
-      ):(
-        <LoadingScreen/>
+        <div className="grid grid-cols-2 gap-4 md:justify-items-center sm:grid-cols-1">
+          {bookList &&
+            bookList.map((data: CardProps) => (
+              <div className=" hover:cursor-pointer" key={data.isbn13} onClick={() => navigationCallBack(data.isbn13)}>
+                <Card {...data} firstCallBackFunction={() => addToCard(data)} counterCallBackFunction={updateCount} />
+              </div>
+            ))}
+        </div>
+      ) : (
+        <LoadingScreen />
       )}
     </>
   );
