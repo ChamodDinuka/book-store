@@ -40,15 +40,31 @@ export const getBookDetails = (ISBN: string) => async (dispatch: Dispatch) => {
     }
 };
 
-export const addToCart = (itemData: CardProps,total:number) => async (dispatch: Dispatch) => {
+export const addToCart = (itemData: CardProps, total: number) => async (dispatch: Dispatch) => {
     dispatch({
         type: actions.ADD_TO_CART,
         payload: itemData,
-        total:total
+        total: total
     });
 };
 
-export const searchBooks = (search:string) => async (dispatch: Dispatch) => {
+export const updateToCart = (itemData: CardProps, total: number) => async (dispatch: Dispatch) => {
+    dispatch({
+        type: actions.UPDATE_TO_CART,
+        payload: itemData,
+        total: total
+    });
+};
+
+export const deleteToCart = (itemData: CardProps, total: number) => async (dispatch: Dispatch) => {
+    dispatch({
+        type: actions.DELETE_CART_ITEM,
+        payload: itemData,
+        total: total
+    });
+};
+
+export const searchBooks = (search: string) => async (dispatch: Dispatch) => {
     dispatch({ type: actions.GET_SEARCH_BOOKS_START });
 
     try {
@@ -66,4 +82,16 @@ export const searchBooks = (search:string) => async (dispatch: Dispatch) => {
         dispatch({ type: actions.GET_SEARCH_BOOKS_END });
     }
 };
+
+export const setAlert = (message: string, show: boolean) => async (dispatch: Dispatch) => {
+    dispatch({
+        type: actions.SET_ALERT,
+        payload: { message, show }
+    });
+    if (show) {
+        setTimeout(() => {
+            setAlert('', false)(dispatch);
+        }, 3000);
+    }
+}
 

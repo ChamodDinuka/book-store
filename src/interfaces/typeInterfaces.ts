@@ -15,5 +15,5 @@ export interface CardProps {
     count?:number;
     firstCallBackFunction:()=> void;
     secondCallBackFunction:()=> void;
-    counterCallBackFunction:(count:number)=> void;
+    counterCallBackFunction:(count:number,isbn13:string)=> void;
 }

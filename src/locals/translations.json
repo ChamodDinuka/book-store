@@ -4,5 +4,15 @@
     "Update": "Update",
     "Remove":"Remove",
     "Cart":"Cart"
+  },
+  "alert": {
+    "Item_added_successfully":"Item added successfully",
+    "Item_removed_successfully":"Item removed successfully",
+    "Item_updated_successfully":"Item updated successfully"
+  },
+  "header": {
+    "Book_store":"Book Store",
+    "Book_detail":"Book Detail",
+    "My_cart":"My Cart"
   }
 }

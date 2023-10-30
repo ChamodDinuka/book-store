@@ -4,7 +4,7 @@ import { CardProps } from "../../interfaces/typeInterfaces";
 
 function Card(data: CardProps) {
   const { t } = useTranslation();
-  const { title, subtitle, isbn13, price, image } = { ...data };
+  const { title, subtitle, isbn13, price, image, count } = { ...data };
 
   return (
     <div className="p-4 border-2 h-full rounded-lg shadow-md max-w-xl flex items-center space-x-4 gap-4 sm:flex-col">
@@ -22,11 +22,22 @@ function Card(data: CardProps) {
           className="pl-1 border-2 border-gray-700 w-12 rounded-sm"
           type="number"
           min={1}
-          defaultValue={1}
-          onClick={(e)=>{e.stopPropagation()}}
-          onChange={(e) => {data.counterCallBackFunction(Number(e.target.value))}}
+          defaultValue={count || 1}
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+          onChange={(e) => {
+            data.counterCallBackFunction(Number(e.target.value),isbn13);
+          }}
         />
-        <Button label={t("label.Add_to_cart")} callBackFunction={data.firstCallBackFunction} />
+        {!count ? (
+          <Button label={t("label.Add_to_cart")} callBackFunction={data.firstCallBackFunction} />
+        ) : (
+          <>
+            <Button label={t("label.Update")} callBackFunction={data.firstCallBackFunction} />
+            <Button label={t("label.Remove")} callBackFunction={data.secondCallBackFunction} />
+          </>
+        )}
       </div>
     </div>
   );

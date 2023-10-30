@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { getBookDetails, addToCart } from "../../store/actions/booksAction";
+import { getBookDetails, addToCart, setAlert } from "../../store/actions/booksAction";
 import Header from "../../components/header/header";
 import Cart from "../../components/cart/cart";
 import Button from "../../components/buttons/button";
@@ -23,19 +23,20 @@ function BookDetails() {
 
   const addToCard = () => {
     const total = getTotal();
-    addToCart({ ...selectedBook, count: countRef.current },total)(dispatch);
+    addToCart({ ...selectedBook, count: countRef.current }, total)(dispatch);
+    setAlert(t("alert.Item_added_successfully"),true)(dispatch);
   };
 
-  const getTotal = ():number =>{
+  const getTotal = (): number => {
     const price = Number(selectedBook.price.substring(1));
-    const preTotal = cart?.reduce((accumulator:number, currentValue:CardProps) => {
-        if(currentValue.count){
-        return accumulator + (currentValue.count*Number(currentValue.price.substring(1)));
-        }
-      }, 0);
-    const total = preTotal + (price*countRef.current);
+    const preTotal = cart?.reduce((accumulator: number, currentValue: CardProps) => {
+      if (currentValue.count) {
+        return accumulator + currentValue.count * Number(currentValue.price.substring(1));
+      }
+    }, 0);
+    const total = preTotal + price * countRef.current;
     return total;
-  }
+  };
 
   const updateCount = (count: number) => {
     countRef.current = count;
@@ -43,7 +44,7 @@ function BookDetails() {
 
   return (
     <>
-      <Header />
+      <Header title={t("header.Book_detail")}/>
       <div className="flex justify-end p-2 sticky top-0">
         <Cart />
       </div>

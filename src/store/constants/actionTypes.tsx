@@ -14,3 +14,7 @@ export const GET_BOOK_DETAILS_END = 'GET_BOOK_DETAILS_END';
 export const GET_BOOK_DETAILS_FAIL = 'GET_BOOK_DETAILS_FAIL';
 
 export const ADD_TO_CART = 'ADD_TO_CART';
+export const UPDATE_TO_CART = 'UPDATE_TO_CART';
+export const DELETE_CART_ITEM = 'DELETE_CART_ITEM';
+
+export const SET_ALERT = 'SET_ALERT';
