@@ -7,7 +7,7 @@ function Card(data: CardProps) {
   const { title, subtitle, isbn13, price, image, count } = { ...data };
 
   return (
-    <div className="p-4 border-2 h-full rounded-lg shadow-md max-w-xl flex items-center space-x-4 gap-4 sm:flex-col">
+    <div className="p-4 border-2 h-full rounded-lg shadow-md max-w-xl flex items-center space-x-4 gap-4 sm:flex-col sm:max-w-full">
       <div className="shrink-0">
         <img className="h-24 w-24" src={image} alt="ChitChat Logo" />
       </div>
